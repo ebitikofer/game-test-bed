@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "579160336159",
+    "firebase_url": "https://game-test-bed.firebaseio.com",
+    "project_id": "game-test-bed",
+    "storage_bucket": "game-test-bed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:579160336159:android:41cd38e1fe76135f",
+        "android_client_info": {
+          "package_name": "com.ebitikofer.gametestbed"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "579160336159-psg0sp5cs9secc6o44p15l21hmk72v0t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBceId54UJgAsxJby7A_2BcYihqJ7CNMhM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
