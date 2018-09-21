@@ -30,19 +30,23 @@ public class PlayerMovement : MonoBehaviour {
         // Add a forward force
         rb.AddForce(0, 0, forwardForce * Time.deltaTime);
 
-		if (Input.GetKey("d"))	// If the player is pressing the "d" key
+        // Touch myTouch = Input.GetTouch(0);
+
+        // Touch[] myTouches = Input.touches;
+
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))	// If the player is pressing the "d" key
 		{
 			// Add a force to the right
 			rb.AddForce(sidewaysForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
 		}
 
-		if (Input.GetKey("a"))  // If the player is pressing the "a" key
+		if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))  // If the player is pressing the "a" key
 		{
 			// Add a force to the left
 			rb.AddForce(-sidewaysForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
 		}
 
-        if (Input.GetKey("space") && isGrounded)  // If the player is pressing the "space" key
+        if (Input.GetKey(KeyCode.Space) && isGrounded)  // If the player is pressing the "space" key
         {
             // Add a force to the left
             rb.AddForce(0, upwardForce, 0, ForceMode.Impulse);
@@ -54,18 +58,25 @@ public class PlayerMovement : MonoBehaviour {
 			FindObjectOfType<GameManager>().EndGame();
 		}
 
-        foreach (Touch touch in Input.touches)
+        if (Input.touchCount == 1)
         {
-            if (touch.position.x < Screen.width / 2)
+            foreach (Touch touch in Input.touches)
             {
-                // Add a force to the left
-                rb.AddForce(-sidewaysForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+                if (touch.position.x < Screen.width / 2)
+                {
+                    // Add a force to the left
+                    rb.AddForce(-sidewaysForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+                }
+                else if (touch.position.x > Screen.width / 2)
+                {
+                    // Add a force to the right
+                    rb.AddForce(sidewaysForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+                }
             }
-            else if (touch.position.x > Screen.width / 2)
-            {
-                // Add a force to the right
-                rb.AddForce(sidewaysForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
-            }
+        } else if(Input.touchCount == 2 && isGrounded)
+        {
+            rb.AddForce(0, upwardForce, 0, ForceMode.Impulse);
+            isGrounded = false;
         }
 
 
