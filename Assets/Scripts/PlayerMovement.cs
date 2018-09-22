@@ -6,8 +6,9 @@ public class PlayerMovement : MonoBehaviour {
 	public Rigidbody rb;
 
     public Vector3 jump;
-    public float forwardForce = 2000f;	// Variable that determines the forward force
-	public float sidewaysForce = 500f;  // Variable that determines the sideways force
+    public float forwardForce = 2000f;  // Variable that determines the forward force
+    public float backwardForce = 100f;  // Variable that determines the forward force
+    public float sidewaysForce = 500f;  // Variable that determines the sideways force
     public float upwardForce = 1;  // Variable that determines the sideways force
     public float ystop = -8f;
 
@@ -45,6 +46,12 @@ public class PlayerMovement : MonoBehaviour {
 			// Add a force to the left
 			rb.AddForce(-sidewaysForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
 		}
+
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))  // If the player is pressing the "a" key
+        {
+            // Add a force to the left
+            rb.AddForce(0, 0, -backwardForce * Time.deltaTime, ForceMode.VelocityChange);
+        }
 
         if (Input.GetKey(KeyCode.Space) && isGrounded)  // If the player is pressing the "space" key
         {
